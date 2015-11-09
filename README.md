@@ -1,2 +1,0 @@
-# oy
-PHP MYSQL R  BOOTSTRAP
