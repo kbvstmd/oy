@@ -1,0 +1,237 @@
+﻿write.csv(data_symbol_cli_T,file = "D:/80T.csv")
+
+
+> load("C:/Users/ouyang/Desktop/FourDatasets.Rdata")
+> library(rms)
+载入需要的程辑包：Hmisc
+载入需要的程辑包：grid
+载入需要的程辑包：lattice
+载入需要的程辑包：survival
+载入需要的程辑包：splines
+载入需要的程辑包：Formula
+
+载入程辑包：‘Hmisc’
+
+下列对象被屏蔽了from ‘package:base’:
+
+    format.pval, round.POSIXt, trunc.POSIXt, units
+
+载入需要的程辑包：SparseM
+
+载入程辑包：‘SparseM’
+
+下列对象被屏蔽了from ‘package:base’:
+
+    backsolve
+
+Warning messages:
+1: 程辑包‘rms’是用R版本3.1.2 来建造的 
+2: 程辑包‘Hmisc’是用R版本3.1.2 来建造的 
+3: 程辑包‘Formula’是用R版本3.1.2 来建造的 
+4: 程辑包‘SparseM’是用R版本3.1.2 来建造的 
+> library(rms)
+> 
+> View(data_symbol_cli_T)
+> 
+> 
+> S <- with(data_symbol_cli_T, Surv(Survtime,SPP1))
+Warning message:
+In Surv(Survtime, SPP1) : Invalid status value, converted to NA
+> fix(S)
+> S1 <- with(data_symbol_cli_T, Surv(Survtime,Surv==1))
+> fix(`S1`)
+> S2<-Surv(Survtime,SPP1)
+Error in Surv(Survtime, SPP1) : object 'Survtime' not found
+> S2 <- with(data_symbol_cli_T, Surv(Survtime,SPP1,Surv==1))
+Warning message:
+In Surv(Survtime, SPP1, Surv == 1) :
+  Stop time must be > start time, NA created
+> fix(`S2`)
+> S2 <- with(data_symbol_cli_T, Surv(SPP1,Survtime,Surv==1))
+> fix(`S2`)
+> f1<-cph(S2~SPP1,surv=TRUE,x=TRUE)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> f1<-cph(S2~SPP1,surv=TRUE,x=TRUE)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> f1<-cph(S2~SPP1)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> fix(`S2`)
+> f1<-cph(S2 ~ SPP1)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> f1<-cph(S2 ~ SPP1,surv=TRUE)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> S3 <- with(data_symbol_cli_T, Surv(SPP1,Survtime))
+Warning message:
+In Surv(SPP1, Survtime) : Invalid status value, converted to NA
+> fix(`S3`)
+> View(S2)
+> S4<-Surv(data_symbol_cli_T,SPP1)
+Error in Surv(data_symbol_cli_T, SPP1) : Time variable is not numeric
+> d1<-subset(data_symbol_cli_T,select=c(SPP1,Survtime,Surv))
+> View(d1)
+> S5 <- with(d1, Surv(SPP1,Survtime,Surv==1))
+> View(S5)
+> f1<-cph(S5 ~ SPP1,surv=TRUE)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> f1<-cph(d1 ~ SPP1,surv=TRUE)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> f1<-cph(S5 ~ SPP1,surv=TRUE,data=d1)
+> fix(`f1`)
+
+Warning message:
+In edit.default(name, file, title, editor = defaultEditor) :
+  deparse may be incomplete
+> anova(f1)
+                Wald Statistics          Response: S5 
+
+ Factor     Chi-Square d.f. P     
+ SPP1       0.02       1    0.8779
+ TOTAL      0.02       1    0.8779
+ 
+ 
+ > variable = c("SPP1","AFP")
+> 
+> P = rep(NA,length(variable))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> load("C:/Users/ouyang/Desktop/FourDatasets.Rdata")
+> library(rms)
+载入需要的程辑包：Hmisc
+载入需要的程辑包：grid
+载入需要的程辑包：lattice
+载入需要的程辑包：survival
+载入需要的程辑包：splines
+载入需要的程辑包：Formula
+
+载入程辑包：‘Hmisc’
+
+下列对象被屏蔽了from ‘package:base’:
+
+    format.pval, round.POSIXt, trunc.POSIXt, units
+
+载入需要的程辑包：SparseM
+
+载入程辑包：‘SparseM’
+
+下列对象被屏蔽了from ‘package:base’:
+
+    backsolve
+
+Warning messages:
+1: 程辑包‘rms’是用R版本3.1.2 来建造的 
+2: 程辑包‘Hmisc’是用R版本3.1.2 来建造的 
+3: 程辑包‘Formula’是用R版本3.1.2 来建造的 
+4: 程辑包‘SparseM’是用R版本3.1.2 来建造的 
+> library(rms)
+> 
+> View(data_symbol_cli_T)
+> 
+> 
+> S <- with(data_symbol_cli_T, Surv(Survtime,SPP1))
+Warning message:
+In Surv(Survtime, SPP1) : Invalid status value, converted to NA
+> fix(S)
+> S1 <- with(data_symbol_cli_T, Surv(Survtime,Surv==1))
+> fix(`S1`)
+> S2<-Surv(Survtime,SPP1)
+Error in Surv(Survtime, SPP1) : object 'Survtime' not found
+> S2 <- with(data_symbol_cli_T, Surv(Survtime,SPP1,Surv==1))
+Warning message:
+In Surv(Survtime, SPP1, Surv == 1) :
+  Stop time must be > start time, NA created
+> fix(`S2`)
+> S2 <- with(data_symbol_cli_T, Surv(SPP1,Survtime,Surv==1))
+> fix(`S2`)
+> f1<-cph(S2~SPP1,surv=TRUE,x=TRUE)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> f1<-cph(S2~SPP1,surv=TRUE,x=TRUE)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> f1<-cph(S2~SPP1)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> fix(`S2`)
+> f1<-cph(S2 ~ SPP1)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> f1<-cph(S2 ~ SPP1,surv=TRUE)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> S3 <- with(data_symbol_cli_T, Surv(SPP1,Survtime))
+Warning message:
+In Surv(SPP1, Survtime) : Invalid status value, converted to NA
+> fix(`S3`)
+> View(S2)
+> S4<-Surv(data_symbol_cli_T,SPP1)
+Error in Surv(data_symbol_cli_T, SPP1) : Time variable is not numeric
+> d1<-subset(data_symbol_cli_T,select=c(SPP1,Survtime,Surv))
+> View(d1)
+> S5 <- with(d1, Surv(SPP1,Survtime,Surv==1))
+> View(S5)
+> f1<-cph(S5 ~ SPP1,surv=TRUE)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> f1<-cph(d1 ~ SPP1,surv=TRUE)
+Error in eval(expr, envir, enclos) : object 'SPP1' not found
+> f1<-cph(S5 ~ SPP1,surv=TRUE,data=d1)
+> fix(`f1`)
+
+Warning message:
+In edit.default(name, file, title, editor = defaultEditor) :
+  deparse may be incomplete
+> anova(f1)
+                Wald Statistics          Response: S5 
+
+ Factor     Chi-Square d.f. P     
+ SPP1       0.02       1    0.8779
+ TOTAL      0.02       1    0.8779
+> anova(f1)[5]
+[1] 0.877878
+> variable = c("SPP1","AFP")
+> 
+> P = rep(NA,length(variable))
+> View(data_symbol_cli_T)
+> S6 <- with(data_symbol_cli_T, Surv(AFP,SPP1,Survtime,Surv==1))
+Error in match.arg(type) : 'arg'要么是NULL，要么是字符矢量。
+> S6 <- with(data_symbol_cli_T, Surv(AFP,SPP1,Survtime,Surv==1))
+Error in match.arg(type) : 'arg'要么是NULL，要么是字符矢量。
+> S6 <- with(data_symbol_cli_T, Surv(SPP1,Survtime,Surv==1))
+> S6 <- with(data_symbol_cli_T, Surv(AGA,SPP1,Survtime,Surv==1))
